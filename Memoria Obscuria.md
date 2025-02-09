@@ -1,4 +1,4 @@
-# Forensic Challenge: Memoria Obscuria
+![image](https://github.com/user-attachments/assets/db02acdc-a0ed-4b83-9ae7-ce01401a13e1)# Forensic Challenge: Memoria Obscuria
 ![image](https://github.com/user-attachments/assets/bcf38a10-0018-4d5f-b1a3-ec88dc1ba29b)
 <br>
 <br>
@@ -73,6 +73,72 @@ We got the values we need to decrypt now, replace the fake key value with the re
 <br>
 We got a drive link from that, let's check that out.
 <br>
+<br>
+It is a gif file that we can download, from the looks of it, it is morse code.
+<br>
+![image](https://github.com/user-attachments/assets/7712b404-cb4c-43e6-9982-8777bdd55a91)
+<br>
+I went to a Split GIF to frames website so I can record down the code easily.
+<br>
+![image](https://github.com/user-attachments/assets/dbf65f9d-a9fe-4f83-820b-e5450d844cab)
+<br>
+Then go to a Morse Code Translator website and decode it.
+<br>
+![image](https://github.com/user-attachments/assets/3d2fefcf-cdf6-46c0-86c9-4094c1156d51)
+<br>
+Okay :3 this seems to be the password to the `protected.zip`, let's go unzip it using this as the password. This took me a few tries cuz the author's note "Capitalize" could mean a few combinations (capitalize all letters, capitalize the first letter of each word....)
+<br>
+Unlock the zip file using `Openthisfilesesame` <br>
+![image](https://github.com/user-attachments/assets/fcd07d83-8c44-45e2-8708-58d2e13392c6)
+<br>
+<br>
+
+## **Step 3: Analyzing the Image File**
+After unzipping, we get an image file that seemingly doesn't contain anything useful.
+<br>
+![image](https://github.com/user-attachments/assets/1dc17c36-443c-4ff6-8ee5-abc9fda92a3f)
+<br>
+<br>
+After trying commands like file, exiftool, binwalk, foremost and stegsolve, I didn't get anything useful. Making steghide my final idea to solve this, but we don't have the password. <br>
+Remember the sus files that we found earlier when analyzing the memory dump? There were still some files that we haven't analyze yet, so back to volatility we go~~~
+<br>
+Let's dump out `0xa73e9cf0      \Users\sai\Desktop\imp.txt ` and `0xa73ea3b0      \Users\sai\Desktop\ks.py ` 
+<br>
+Checking the imp.txt, doesn't seem to contain anything useful.
+<br>
+![image](https://github.com/user-attachments/assets/f2c895fa-9ed7-446a-b804-54bf095fbb9c)
+<br>
+<br>
+
+Moving on to `ks.py` then, we found a base64 encoded string :D
+<br>
+![image](https://github.com/user-attachments/assets/3c739259-61b7-4852-9777-1412d6bc2d05)
+<br>
+You can go to a website called CyberChef to decode it, or decode it from CLI with the command: `echo UGFzc3dvcmR7WTB1X200eV9wYTU1fQ== | base64 --decode`. We got `Password{Y0u_m4y_pa55}`
+<br>
+![image](https://github.com/user-attachments/assets/641d5766-1ed6-4ed9-9d38-d695723dff53)
+<br>
+Now, we can try using this as password to steghide extract information from the image file.
+<br>
+<br>
+
+## **Step 4: Getting the Flag**
+Using the command, `steghide extract -p "Y0u_m4y_pa55" -sf fin.jpg`, we got the flag =w=
+<br>
+![image](https://github.com/user-attachments/assets/847c93da-4e8f-4e5e-8a65-26b39068e0df)
+<br>
+<br>
+**Flag:** p_ctf{Th3fla4gsureisV0latil3}
+
+
+
+
+
+
+
+
+
+
 
 
 
