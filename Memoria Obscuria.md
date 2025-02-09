@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/db02acdc-a0ed-4b83-9ae7-ce01401a13e1)# Forensic Challenge: Memoria Obscuria
+# Forensic Challenge: Memoria Obscuria
 ![image](https://github.com/user-attachments/assets/bcf38a10-0018-4d5f-b1a3-ec88dc1ba29b)
 <br>
 <br>
